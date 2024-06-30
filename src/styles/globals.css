@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --primary-color: #0984e3;
+  --primary-color-light: #3a9ce8;
+  --primary-color-dark: #065c9e;
+  --primary-contrast-color: #fff;
+  --secondary-color: #6c5ce7;
+  --secondary-color-light: #a29bfe;
+  --secondary-color-dark: #4834d4;
+  --secondary-contrast-color: #fff;
+  --success-color: #00b894;
+  --error-color: #d63031;
+  --warning-color: #fdcb6e;
+  /*  */
+  --border: 0, 0%, 85%;
+  --input: 0, 0%, 85%;
+  --ring: 0, 0%, 85%;
+  --background: 0, 0%, 100%;
+  --foreground: 0, 0%, 10%;
+  --primary-foreground: 0, 0%, 100%;
+  --secondary-foreground: 0, 0%, 100%;
+  --destructive: 0, 100%, 50%;
+  --destructive-foreground: 0, 0%, 100%;
+  --muted: 0, 0%, 60%;
+  --muted-foreground: 0, 0%, 20%;
+  --accent: 220, 90%, 56%;
+  --accent-foreground: 0, 0%, 100%;
+  --popover: 0, 0%, 95%;
+  --popover-foreground: 0, 0%, 10%;
+  --card: 0, 0%, 100%;
+  --card-foreground: 0, 0%, 10%;
+}
