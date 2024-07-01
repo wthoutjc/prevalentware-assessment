@@ -1,0 +1,37 @@
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  phone: String!
+  role: Role!
+  createdAt: Date!
+  updatedAt: Date!
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+type Query {
+  me: User
+}
+
+type Mutation {
+  signUp(name: String!, email: String!, phone: String!, password: String!): User
+  signIn(email: String!, password: String!): String
+}
+
+schema
+  @auth(
+    providers: [
+      {
+        type: jwt
+        issuer: "{{ env.ISSUER_URL }}"
+        secret: "{{ env.NEXTAUTH_SECRET }}"
+      }
+    ]
+    rules: [{ allow: private }]
+  ) {
+  query: Query
+}
