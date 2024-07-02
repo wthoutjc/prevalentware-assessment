@@ -1,8 +1,10 @@
+import { Roles } from "../enums";
+
 export interface User {
-  id: number;
+  id: string;
   email: string;
   name: string;
-  role: string;
-  created_at: string;
-  updated_at: string;
+  role: Roles;
+  created_at?: string;
+  updated_at?: string;
 }

@@ -5,7 +5,7 @@ import * as bcrypt from "bcryptjs";
 import Credentials from "next-auth/providers/credentials";
 
 // Auth Actions
-import { User } from "@/lib";
+import { Roles, User } from "@/lib";
 
 // Database
 import { db } from "@/database";
@@ -22,7 +22,7 @@ export const authOptions: NextAuthOptions = {
         },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials) {
+      async authorize(credentials): Promise<User | null> {
         const user = await db.user.findUnique({
           where: { email: credentials!.email },
         });
@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
             id: user.id,
             name: user.name,
             email: user.email,
-            role: user.role,
+            role: user.role as Roles,
           };
         }
 
@@ -44,31 +44,13 @@ export const authOptions: NextAuthOptions = {
     signIn: "/",
   },
   callbacks: {
-    async jwt({ token, account, user }) {
-      if (user) {
-        token.accessToken = (
-          user as unknown as { accessToken: string }
-        ).accessToken;
-        if (account) {
-          switch (account.type) {
-            case "credentials":
-              token.user = (user as unknown as { user: User }).user;
-              token.accessTokenExpires = (
-                user as unknown as { accessTokenExpires: number }
-              ).accessTokenExpires;
-              break;
-          }
-        }
-      }
-
+    async jwt({ token, user }) {
+      if (user) token.user = user as User;
       return token;
     },
-    async session({ session, token }: { session: any; token: any }) {
-      session.accessToken = (
-        token as unknown as { accessToken: string }
-      ).accessToken;
-      session.user = token.user as any;
 
+    async session({ session, token }) {
+      session.user = token.user as User;
       return session;
     },
   },

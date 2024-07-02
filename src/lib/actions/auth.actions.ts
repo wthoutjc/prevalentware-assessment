@@ -22,8 +22,7 @@ export async function signIn(
 
   const res = await nextSignIn("credentials", {
     ...data,
-    callbackUrl: "/home",
-    redirect: true,
+    callbackUrl: "/dashboard",
   });
 
   if (res && res.error)
@@ -33,5 +32,7 @@ export async function signIn(
 }
 
 export const signOut = async () => {
-  await nextSignOut();
+  await nextSignOut({
+    callbackUrl: "/auth/sign-in",
+  });
 };

@@ -8,6 +8,7 @@ import { MyDrawer } from "@/components/ui/drawer/my-drawer";
 import { ApolloProviderWrapper } from "@/components/graphql/apollo-provider-wrapper";
 
 import AuthProvider from "@/components/auth/session-provider";
+import MyBreadcum from "@/components/ui/breadcums/my-breadcum";
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -15,8 +16,8 @@ const fontSans = FontSans({
 });
 
 export const metadata: Metadata = {
-  title: "Prevalent",
-  description: "",
+  title: "Prevalentware Assessment",
+  description: "Assessment for Prevalentware",
 };
 
 export default function RootLayout({
@@ -30,7 +31,10 @@ export default function RootLayout({
         <AuthProvider>
           <ApolloProviderWrapper>
             <MyDrawer />
-            <main className="flex w-full min-h-full p-4">{children}</main>
+            <main className="flex flex-col w-full min-h-full p-4">
+              <MyBreadcum />
+              <div className="flex w-full min-h-full">{children}</div>
+            </main>
           </ApolloProviderWrapper>
         </AuthProvider>
       </body>
