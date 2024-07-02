@@ -3,7 +3,7 @@ import { authOptions } from "../../components/auth/options";
 
 async function DashboardPage() {
   const session = await getServerSession(authOptions);
-  const { user } = session!;
+  console.log("DashboardPage.session", session);
 
   return <div>DashboardPage</div>;
 }

@@ -31,7 +31,7 @@ export default function RootLayout({
         <AuthProvider>
           <ApolloProviderWrapper>
             <MyDrawer />
-            <main className="flex flex-col w-full min-h-full p-4">
+            <main className="flex flex-col w-full h-full p-4">
               <MyBreadcum />
               <div className="flex w-full min-h-full">{children}</div>
             </main>
